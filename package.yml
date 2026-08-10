@@ -1,11 +1,10 @@
 package: community.lazycat.app.readur
-version: 2.6.2
+version: 2.9.2
 name: Readur
 description: 快速、轻松、直观的 OCR 平台，使用 Rust 和 TypeScript 编写。具有现代 UI 和现代 API，注重直观的用户体验。
 min_os_version: 1.5.0
 homepage: https://github.com/readur/readur
 author: readur
-
 locales:
   zh:
     name: "Readur"

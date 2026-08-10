@@ -4,15 +4,14 @@ application:
   background_task: true
   public_path:
     - /
-
   upstreams:
     - location: /
       backend: http://readur:8000/
-
 services:
   readur:
     # ghcr.io/readur/readur:2.6.2
-    image: registry.lazycat.cloud/czyt/readur/readur:b667b11ff4ffe27a
+    # upstream: ghcr.io/readur/readur:2.9.2
+    image: registry.lazycat.cloud/czyt/readur/readur:450d47dabc841351
     environment:
       #- DATABASE_URL=postgresql://readur:readur@postgres/readur
       - POSTGRES_HOST=postgres
@@ -21,38 +20,35 @@ services:
       - POSTGRES_USER=readur
       - POSTGRES_PASSWORD={{ stable_secret "db_password" }}
       - SERVER_ADDRESS=0.0.0.0:8000
-        # Security
+      # Security
       - JWT_SECRET={{ stable_secret "jwt$secret"  }}
-        # File paths
+      # File paths
       - UPLOAD_PATH=/app/uploads
       - WATCH_FOLDER=/app/watch
-
-        # OCR configuration
-        # # Available languages (partial list):
-        # eng - English
-        # deu - German (Deutsch)
-        # fra - French (Français)
-        # spa - Spanish (Español)
-        # ita - Italian (Italiano)
-        # por - Portuguese
-        # rus - Russian
-        # chi_sim - Chinese Simplified
-        # jpn - Japanese
-        # ara - Arabic
+      # OCR configuration
+      # # Available languages (partial list):
+      # eng - English
+      # deu - German (Deutsch)
+      # fra - French (Français)
+      # spa - Spanish (Español)
+      # ita - Italian (Italiano)
+      # por - Portuguese
+      # rus - Russian
+      # chi_sim - Chinese Simplified
+      # jpn - Japanese
+      # ara - Arabic
       - OCR_LANGUAGE=eng+chi_sim
       - CONCURRENT_OCR_JOBS=4
       - OCR_TIMEOUT_SECONDS=300
       - MAX_FILE_SIZE_MB=50
-        # Performance
+      # Performance
       - MEMORY_LIMIT_MB=512
       - CPU_PRIORITY=normal
-
-        # File watching
+      # File watching
       - ALLOWED_FILE_TYPES=pdf,txt,doc,docx,png,jpg,jpeg
       - WATCH_INTERVAL_SECONDS=30
       - FILE_STABILITY_CHECK_MS=1000
       - MAX_FILE_AGE_HOURS=24
-
     binds:
       - /lzcapp/var/upload:/app/uploads
       - /lzcapp/var/watch:/app/watch
@@ -63,10 +59,10 @@ services:
         - CMD-SHELL
         - curl -f http://localhost:8000/api/health
       start_period: 40s
-
   postgres:
     # docker.io/library/postgres:17-alpine
-    image: registry.lazycat.cloud/czyt/library/postgres:bb84b585f0ed5342
+    # upstream: docker.io/library/postgres:17.10-alpine3.24
+    image: registry.lazycat.cloud/czyt/library/postgres:e5e91267f148f9b5
     environment:
       - POSTGRES_USER=readur
       - POSTGRES_PASSWORD={{ stable_secret "db_password" }}

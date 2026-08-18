@@ -61,8 +61,8 @@ services:
       start_period: 40s
   postgres:
     # docker.io/library/postgres:17-alpine
-    # upstream: docker.io/library/postgres:17.10-alpine3.24
-    image: registry.lazycat.cloud/czyt/library/postgres:e5e91267f148f9b5
+    # upstream: docker.io/library/postgres:17.11-alpine3.24
+    image: registry.lazycat.cloud/czyt/library/postgres:594425a9a663283a
     environment:
       - POSTGRES_USER=readur
       - POSTGRES_PASSWORD={{ stable_secret "db_password" }}

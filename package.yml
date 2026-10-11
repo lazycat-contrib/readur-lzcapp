@@ -1,4 +1,5 @@
 package: community.lazycat.app.readur
+license: MIT
 version: 3.0.0
 name: Readur
 description: 快速、轻松、直观的 OCR 平台，使用 Rust 和 TypeScript 编写。具有现代 UI 和现代 API，注重直观的用户体验。

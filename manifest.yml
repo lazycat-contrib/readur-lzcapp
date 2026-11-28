@@ -10,8 +10,8 @@ application:
 services:
   readur:
     # ghcr.io/readur/readur:2.6.2
-    # upstream: ghcr.io/readur/readur:3.1.4
-    image: registry.lazycat.cloud/czyt/readur/readur:3e9e6156c5aed008
+    # upstream: ghcr.io/readur/readur:3.1.5
+    image: registry.lazycat.cloud/czyt/readur/readur:9499f86161feca1e
     environment:
       #- DATABASE_URL=postgresql://readur:readur@postgres/readur
       - POSTGRES_HOST=postgres
